@@ -1,0 +1,529 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ACE eCycle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="{% static 'assets/img/apple-icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
+<!--
+    
+
+-->
+</head>
+
+<body class="bg-light">
+    
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+                ACE eCycle
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul style="align-items: center;" class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="newauction">Auction</a>
+                            
+                        </li>
+                       <li class="nav-item">
+                            <a class="nav-link" href="about">About</a>
+                        </li>
+                        <li class="nav-item">
+                          <div class="dropdown">
+                            <label style="color:black" class="dropbtn">Product</label>
+                            <div class="dropdown-content">
+                            <a href="sell">Sell</a>
+                            <a href="shop">Buy</a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact">Contact</a>
+                    </ul>
+                </div>
+
+                <div class="navbar align-self-center d-flex">
+                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                            <div class="input-group-text">
+                                <i class="fa fa-fw fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="nav-icon d-none d-lg-inline" href="profile">
+                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                    </a>
+                    <a class="nav-icon position-relative text-decoration-none" href="cart">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                    </a>
+                    <a class="nav-icon position-relative text-decoration-none" href="login">
+                        <i class="fa fa-fw fa-user text-dark  mr-3"> </i>
+                        <span class="position-absolute top-0 left-250  translate-top badge rounded-pill bg-light text-dark"> Login</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Close Header -->
+    <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Live Auction</h1>
+            </div>
+    </div>
+    <div class="row text-center ">
+
+                <div class="col-md-4 pt-5 bg-light">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light ">Product Name</h2>
+                    
+              <div class="text-center" id="product-image"><img src="product.jpg" alt="Product"></div>
+              <div class="text-center" id="current-bid">Current bid: RS0</div>
+              <div class="text-center" id="timer">0:00:00</div>
+                </div>
+
+                <div class="col-md-4 pt-5 bg-light">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light">Product  discription</h2>
+                    <p class="text-center text-center">here</p>
+              <label class="text-uppercase mb-3 text-center " for="bid-input">Enter bid</label><br>
+            <input  class="text-center" type="text" id="bid-input" placeholder="RS000"><br><br>  
+            <button class="text-center" id="bid-button" onclick="placeBid()">Place Bid</button>
+                </div>
+
+                <div class="col-md-4 pt-5 bg-light">                                 
+    <table>
+        <thead>
+            <tr>
+                <th class="h2 text-success border-bottom pb-3 border-light text-center">Bidder</th>
+                <th class="h2 text-success border-bottom pb-3 border-light text-center">Amount</th>
+            </tr>
+        </thead>
+        <tbody id="bid-table">
+            <!-- bids will be added here -->
+        </tbody>
+    </table>
+                </div>
+
+<style type="text/css">
+
+#auction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+
+}
+
+#product-image img {
+    width: 200px;
+    height: 200px;
+}
+
+#product-image img:hover {
+    transform: scale(1.05);
+  }
+
+#bid-input {
+    width: 120px;
+    
+}
+#bid-button{
+    width: 228px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#bid-button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+
+  }
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+</style>
+</div>
+<script type="text/javascript">
+ var targetDate = new Date("Jan 10, 2023 00:00:00").getTime();
+  
+
+setInterval(function () {
+          // Get the current date and time
+      var currentDate = new Date().getTime();
+
+      // Calculate the time remaining until the target date and time
+      var timeRemaining = targetDate - currentDate;
+
+
+      // Calculate the number of days, hours, minutes, and seconds remaining
+      var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+
+    document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+}, 1000);
+
+function placeBid() {
+    var bidInput = document.getElementById("bid-input");
+    var bidAmount = parseInt(bidInput.value);
+
+    if (isNaN(bidAmount)) {
+        alert("Please enter a valid bid amount.");
+        return;
+    }
+
+    var currentBid = document.getElementById("current-bid");
+    var currentBidAmount = parseInt(currentBid.textContent.split("RS")[1]);
+
+    if (bidAmount <= currentBidAmount) {
+        alert("Your bid must be higher than the current bid.");
+        return;
+    }
+
+    // update current bid
+    currentBid.textContent = "Current bid: RS" + bidAmount;
+
+   
+// add bid to table
+var bidTable = document.getElementById("bid-table");
+var newRow = document.createElement("tr");
+newRow.innerHTML = "<td>You</td><td>RS" + bidAmount + "</td>";
+
+// sort table rows in descending order
+var rows = bidTable.rows;
+var insertBeforeRow;
+
+for (var i = 0; i < rows.length; i++) {
+    var rowAmount = parseInt(rows[i].cells[1].textContent.split("RS")[1]);
+    if (bidAmount > rowAmount) {
+        insertBeforeRow = rows[i];
+        break;
+    }
+}
+
+if (insertBeforeRow) {
+    bidTable.insertBefore(newRow, insertBeforeRow);
+} else {
+    bidTable.appendChild(newRow);
+}
+
+// clear bid input field
+bidInput.value = "";
+
+}
+
+</script>
+ </div>
+    <!-- Start Categories of The Month -->
+    <div class="row text-center pt-5">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Futured Auction</h1>
+            </div>
+    </div>
+    <section class="container py-5 bg-light">
+
+     <!--  [{'pr_name':'Iron_rod','pr_price':'100'},{'pr_name':'Iron','pr_price':'200'}] -->   
+   <div class="row">
+   <div class="card">
+  <div class="card-details">
+    <p class="text-title">product name</p>
+    <p class="text-body">Here are the details of the Product </p>
+              <div class="text-center" id="timer">Jan 9 12:30 PM</div>
+
+  </div>
+  <a href="auction"> <button class="card-button">More info</button></a>
+</div> 
+
+<div class="card">
+  <div class="card-details">
+    <p class="text-title">Product Name</p>
+    <p class="text-body">Here are the details of the Product </p>
+              <div class="text-center" id="timer">Jan 9 12:30 PM</div>
+
+  </div>
+ <a href="auction"> <button class="card-button">More info</button></a>
+</div> 
+<div class="card">
+  <div class="card-details">
+    <p class="text-title">Product Name</p>
+    <p class="text-body">Here are the details of the Product </p>
+              <div class="text-center" id="timer">Jan 9 12:30 PM</div>
+
+  </div>
+ <a href="auction"> <button class="card-button">More info</button></a>
+</div>
+<div class="card">
+  <div class="card-details">
+   <p class="text-title">Product Name</p>
+    <p class="text-body">Here are the details of the Product </p>
+              <div class="text-center" id="timer">Jan 9 12:30 PM</div>
+
+  </div>
+ <a href="auction"> <button class="card-button">More info</button></a>
+</div>
+<div class="card">
+  <div class="card-details">
+    <p class="text-title">Product Name</p>
+    <p class="text-body">Here are the details of the Product </p>
+              <div class="text-center" id="timer">Jan 9 12:30 PM</div>
+
+  </div>
+ <a href="auction"> <button class="card-button">More info</button></a>
+</div>
+
+</div>
+
+
+</section>
+<style type="text/css">
+    .dropbtn {
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+   .card {
+  margin-bottom: 30px;
+  margin-left: 60px;
+ width: 190px;
+ height: 254px;
+ border-radius: 20px;
+ background: #f5f5f5;
+ position: relative;
+ padding: 1.8rem;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
+
+}
+
+.card-details {
+ color: black;
+ height: 100%;
+ gap: .5em;
+ display: grid;
+ place-content: center;
+
+}
+
+.card-button {
+ transform: translate(-50%, 125%);
+ width: 60%;
+ border-radius: 1rem;
+ border: none;
+ background-color: #008bf8;
+ color: #fff;
+ font-size: 1rem;
+ padding: .5rem 1rem;
+ position: absolute;
+ left: 50%;
+ bottom: 0;
+ opacity: 0;
+ transition: 0.3s ease-out;
+}
+
+.text-body {
+ color: rgb(134, 134, 134);
+}
+
+/*Text*/
+.text-title {
+ font-size: 1.5em;
+ font-weight: bold;
+}
+
+/*Hover*/
+.card:hover {
+ border-color: #008bf8;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .card-button {
+ transform: translate(-50%, 50%);
+ opacity: 1;
+}
+</style>
+    <!-- End Categories of The Month -->
+      
+<div class="row py-4 bg-light mb-4 ">       
+<style>
+  .icons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+   
+   
+  }
+
+  .icon {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc;
+    border-radius: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+    transition: transform 0.2s;
+    margin-left: 15px;
+  }
+
+  .icon:hover {
+    transform: scale(1.1);
+    color: white;
+  }
+
+  .icon.metal {
+    background-color: #999;
+  }
+
+  .icon.copper {
+    background-color: #964b00;
+  }
+
+  .icon.iron {
+    background-color: #212121;
+  }
+
+  .icon.plastic {
+    background-color: #00b8d4;
+  }
+  
+</style>
+
+
+</div>
+
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+        
+
+            <div class="row text-light mb-4">
+                
+                <div class="col-auto me-auto " style="margin-top: 40px;">
+                    <ul class="list-inline text-left footer-icons">
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-auto" style="margin-top: 40px; ">
+                    <label class="sr-only" for="subscribeEmail">Email address</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
+                        <div class="input-group-text btn-success text-light">Subscribe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 bg-black py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <p class="text-left text-light text-center">
+                            Copyright &copy; 2023  
+                            | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">Tarun & Nayeem</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script src="{% static 'assets/js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/templatemo.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- End Script -->
+</body>
+
+</html>
