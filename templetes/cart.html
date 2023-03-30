@@ -1,0 +1,176 @@
+{% extends 'baseur.html' %}
+{% load static %}
+{% block content %}
+   
+
+    <style>
+      
+      /* Styles for the table */
+      table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 20px auto;
+        margin-left: 100px;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      tr:hover {
+        background-color: #f5f5f5;
+      }
+      /* Styles for the "Add to Cart" and "Remove" buttons */
+      button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+
+    <table id="cart">
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td>Product 1</td>
+        <td>$50</td>
+        <td>
+          <button class="add-btn" data-price="50">+</button>
+          <span class="quantity">0</span>
+          <button class="remove-btn" data-price="50">-</button>
+        </td>
+        <td class="item-total">$0</td>
+        <td><button class="remove-item-btn">Remove</button></td>
+      </tr>
+      <tr>
+        <td>Product 2</td>
+        <td>$30</td>
+        <td>
+          <button class="add-btn" data-price="30">+</button>
+          <span class="quantity">0</span>
+          <button class="remove-btn" data-price="30">-</button>
+        </td>
+        <td class="item-total">$0</td>
+        <td><button class="remove-item-btn">Remove</button></td>
+      </tr>
+      <tr>
+        <td>Product 3</td>
+        <td>$20</td>
+        <td>
+          <button class="add-btn" data-price="20">+</button>
+          <span class="quantity">0</span>
+          <button class="remove-btn" data-price="20">-</button>
+        </td>
+        <td class="item-total">$0</td>
+        <td><button class="remove-item-btn">Remove</button></td>
+      </tr>
+      <tr>
+        <td>Product 4</td>
+        <td>$60</td>
+        <td>
+          <button class="add-btn" data-price="60">+</button>
+          <span class="quantity">0</span>
+          <button class="remove-btn" data-price="60">-</button>
+        </td>
+        <td class="item-total">$0</td>
+        <td><button class="remove-item-btn">Remove</button></td>
+      </tr>
+    </table>
+    <br>
+    <div style="margin-left: 600px" id="shipping">Free Shipping From $100 !</div>
+    <br>
+    <div style="margin-left: 635px" id="overall-total">Overall Total: $0</div>
+    <button style="margin-left: 660px">Pay</button>
+<script>
+  // Get references to the table and overall total element
+  const cart = document.getElementById('cart');
+  const overallTotal = document.getElementById('overall-total');
+  
+  // Add event listeners to all "Add to Cart" buttons
+  cart.addEventListener('click', function(e) {
+    if(e.target.classList.contains('add-btn')) {
+      // Get the price of the product and the corresponding quantity and total elements
+      const price = e.target.dataset.price;
+      const quantity = e.target.nextElementSibling;
+      const total = e.target.parentElement.nextElementSibling;
+  
+      // Increase the quantity and update the total
+      quantity.innerHTML = parseInt(quantity.innerHTML) + 1;
+      total.innerHTML = `$${price * quantity.innerHTML}`;
+  
+      // Update the overall total
+      updateOverallTotal();
+    }
+  });
+  
+  // Add event listeners to all "Remove" buttons
+  cart.addEventListener('click', function(e) {
+    if(e.target.classList.contains('remove-btn')) {
+      // Get the price of the product and the corresponding quantity and total elements
+      const price = e.target.dataset.price;
+      const quantity = e.target.previousElementSibling;
+      const total = e.target.parentElement.nextElementSibling;
+  
+      // Decrease the quantity and update the total
+      if(quantity.innerHTML > 0) {
+        quantity.innerHTML = parseInt(quantity.innerHTML) - 1;
+        total.innerHTML = `$${price * quantity.innerHTML}`;
+      }
+  
+      // Update the overall total
+      updateOverallTotal();
+    }
+  });
+  
+  // Add event listeners to all "Remove Item" buttons
+  cart.addEventListener('click', function(e) {
+    if(e.target.classList.contains('remove-item-btn')) {
+      // Remove the entire table row containing the product
+      e.target.parentElement.parentElement.remove();
+  
+      // Update the overall total
+      updateOverallTotal();
+    }
+  });
+  
+  // Function to update the overall total
+  function updateOverallTotal() {
+    let overallPrice = 0;
+  
+    // Loop through all the item total elements and add their prices
+    const itemTotals = cart.getElementsByClassName('item-total');
+    for(let i = 0; i < itemTotals.length; i++) {
+      overallPrice += parseInt(itemTotals[i].innerHTML.slice(1));
+    }
+  
+    // Add the shipping cost if the overall price is less than $100
+    if(overallPrice < 100) {
+      overallPrice += 100;
+    }
+  
+    // Update the overall total element
+    overallTotal.innerHTML = `Overall Total: $${overallPrice}`;
+  }
+</script>
+
+
+
+{% endblock %}

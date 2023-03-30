@@ -1,0 +1,94 @@
+{% extends 'basead.html' %}
+
+{% block content %}
+
+<div class="home-content">       
+      <div class="productdet">
+        <h2 style="display: flex;justify-content: center;">Product Details</h2>
+        <table id="product_table">
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <td name="product_name">Product 1</td>
+            <td name="product_price">$50</td>
+            <td name="product_des" class="item-total">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+            <td></td>
+            <td><button name="product_remove" class="remove-item-btn">Remove</button>
+              <button name="product_edit" class="remove-item-btn">EDIT</button></td>
+          </tr>
+          <tr>
+            <td>Product 2</td>
+            <td>$30</td>
+            <td class="item-total">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</td>
+            <td></td>
+            <td><button class="remove-item-btn">Remove</button>
+              <button class="remove-item-btn">EDIT</button></td>
+          </tr>
+          <tr>
+            <td>Product 3</td>
+            <td>$20</td>
+            <td class="item-total">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+            <td></td>
+            <td><button class="remove-item-btn">Remove</button>
+              <button class="remove-item-btn">EDIT</button></td>
+          </tr>
+          <tr>
+            <td>Product 4</td>
+            <td>$60</td>
+            <td class="item-total">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+            <td></td>
+            <td><button class="remove-item-btn">Remove</button>
+              <button class="remove-item-btn">EDIT</button></td>
+          </tr>
+        </table>  
+      </div>   
+      <div class="auctiondet">
+        <table id="auction_table">
+          <h2 style="display: flex;justify-content: center;">Auction Details</h2>
+          <tr>
+            <th>Auction name</th>
+            <th>Set/Got Price</th>
+            <th>Category</th>
+            <th>Status</th>
+          </tr>
+          <tr>
+            <td>Product 1</td>
+            <td>$50</td>
+            <td class="item-total">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+            <td></td>
+            <td> <button class="remove-item-btn">Remove</button>
+              <button class="remove-item-btn">EDIT</button></td>
+          </tr>
+          <tr>
+            <td>Product 2</td>
+            <td>$30</td>
+            <td class="item-total">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</td>
+            <td></td>
+            <td> <button class="remove-item-btn">Remove</button>
+              <button class="remove-item-btn">EDIT</button></td>
+          </tr>
+          <tr>
+            <td>Product 3</td>
+            <td>$20</td>
+            <td class="item-total">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+            <td></td>
+            <td><button class="remove-item-btn">Remove</button>
+              <button class="remove-item-btn">EDIT</button></td>
+          </tr>
+          <tr>
+            <td>Product 4</td>
+            <td>$60</td>
+            <td class="item-total">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+            <td></td>
+            <td> 
+              <button class="remove-item-btn">Remove</button>
+              <button class="remove-item-btn">EDIT</button></td>
+          </tr>
+        </table>
+        </div>
+{% endblock %}

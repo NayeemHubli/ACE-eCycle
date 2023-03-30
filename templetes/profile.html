@@ -1,0 +1,379 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Scrap</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="{% static 'assets/img/apple-icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
+<!--
+    
+
+-->
+</head>
+
+<body class="bg-light">
+    
+
+   <!-- Header -->
+   <nav class="navbar navbar-expand-lg navbar-light shadow">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+            ACE eCycle
+        </a>
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+            <div class="flex-fill">
+                <ul style="align-items: center;" class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="newauction">Auction</a>
+                        
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <div class="dropdown">
+                        <label style="color:black" class="dropbtn">Product</label>
+                        <div class="dropdown-content">
+                        <a href="sell">Sell</a>
+                        <a href="shop">Buy</a>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact">Contact</a>
+                </ul>
+            </div>
+            <div class="navbar align-self-center d-flex">
+                <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                        <div class="input-group-text">
+                            <i class="fa fa-fw fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+                <a class="nav-icon d-none d-lg-inline" href="profile">
+                    <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                </a>
+                <a class="nav-icon position-relative text-decoration-none" href="cart">
+                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                    <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                </a>
+                <div class="dropdown">
+                  <label style="color:black" class="dropbtn"><i class="fa fa-fw fa-user text-dark  mr-3"> </i></label>
+                  <div class="dropdown-content">
+                  <a href="shop">buy</a>
+                  <a href="login">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </div>
+        </div>
+
+    </div>
+</nav>
+    <!-- Close Header -->
+    
+    <style type="text/css">
+     .dropbtn {
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  border-radius: 3px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+     body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+
+.containers {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top:20px;
+  padding-left:15px;
+  padding-right:15px;
+}
+ #st-box {
+            float:left;
+            
+        }
+       #nd-box {
+            float:right;
+            
+        }
+
+.rows {
+  width: 100%;
+}
+
+.cols-6 {
+  width: 50%;
+  padding: 1em; 
+}
+
+form {
+  margin-top: 1em;
+}
+
+.forms-group {
+  margin-bottom: 1em;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  padding: 0.5em;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+  text-align: left;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+footer {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+#orders{
+ display: none;
+ 
+}
+
+    </style>
+    <script type="text/javascript">
+      function display(){
+        
+      document.getElementById("orders").style.display = "block";
+      
+      }
+
+  
+  $("#personal-info").submit(function(event) {
+    event.preventDefault();
+    // Get the values of the form inputs
+    var name = $("#name").val();
+    var email = $("#email").val();
+    var address = $("#address").val();
+    var phone = $("#phone").val();
+    // Log the values to the console for demonstration purposes
+    console.log("Name: " + name);
+    console.log("Email: " + email);
+    console.log("Address: " + address);
+    console.log("Phone: " + phone);
+  });
+</script>
+    
+
+    <main>
+    <div  class="stbox left containers">
+      <div class="rows">
+        <table>
+          <tr>
+            <td>
+        <div class="cols-6" id="info">
+          <h2>Personal-Info</h2>
+          <form id="personal-info" action="profile_edit" method="POST">
+            {% csrf_token %}
+            <div class="forms-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" value="{{msg.Email}}">
+            </div>
+            <div class="forms-group">
+              <label for="address">Address:</label>
+              <input type="text" id="address" name="address" value="{{msg.Address}}">
+            </div>
+            <div class="forms-group">
+              <label for="name">Address Pin:</label>
+              <input type="text" id="pin" name="pin"  value="{{msg.Pin}}">
+            </div>
+            <div class="forms-group">
+              <label for="phone">Phone:</label>
+              <input type="tel" id="number" name="number" value="{{msg.Number}}">
+            </div>
+            
+            <button type="submit" value="submit">Edit</button>
+            
+            <button type="submit"><a href="#orders" onclick="display()" style="text-decoration: none; font-weight: bold;color: white;">orders</a></button>
+            
+
+          </form>
+        </div>
+      </td>
+      <td style="text-align: center">
+      
+        <h4>User Profile</h4>
+      <img style="width: 250px"; style="margin: auto;" src="static\assets\img\shop_09.jpg">
+      <p style="text-align: center;">{{msg.Name}}</p>
+
+  </td>
+      </tr>
+        </table>
+
+        <div class="cols-6" id="orders">
+          <h2>Order History</h2>
+          <table id="order-history">
+            <tr>
+              <th>Order #</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+            <tr>
+              <td>12345</td>
+              <td>01/01/2021</td>
+              <td>$100.00</td>
+              <td>Shipped</td>
+            </tr>
+            <tr>
+              <td>67890</td>
+              <td>02/01/2021</td>
+              <td>$50.00</td>
+              <td>Delivered</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+        
+
+            <div class="row text-light mb-4">
+                
+                <div class="col-auto me-auto " style="margin-top: 40px;">
+                    <ul class="list-inline text-left footer-icons">
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-auto" style="margin-top: 40px; ">
+                    <label class="sr-only" for="subscribeEmail">Email address</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
+                        <div class="input-group-text btn-success text-light">Subscribe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 bg-black py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <p class="text-left text-light text-center">
+                            Copyright &copy; 2023  
+                            | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">Tarun & Nayeem</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script src="{% static 'assets/js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/templatemo.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- End Script -->
+</body>
+
+</html>
